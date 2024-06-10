@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Reverse Proxy Management Dashboard
 
-## Getting Started
+This project is a web application built with Next.js and Chakra UI to manage reverse proxy configurations. It includes features like importing CSV files to create reverse proxy IPs, aliases, server groups, web services, and inbound rules.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Dependencies](#dependencies)
+- [Installation](#installation)
+  - [Windows](#windows)
+  - [Linux](#linux)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [License](#license)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project relies on the following dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Axios](https://axios-http.com/)
+- [PapaParse](https://www.papaparse.com/)
+- [next-auth](https://next-auth.js.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+### Windows
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Install Node.js and npm**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   Download and install Node.js from the [official website](https://nodejs.org/). npm is included with Node.js.
 
-## Deploy on Vercel
+2. **Clone the repository**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Install dependencies
+- npm install
+- npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+- npm install axios
+- npm install papaparse
+- npm install next-auth
+- npm install tailwindcss postcss autoprefixer
+- npx tailwindcss init -p
+- npm install cors
+- npm install http-proxy-middleware
+
+4. Run the application
+- npm run dev 
+
+## Linux (Ubuntu)
+
+1. **Install Node.js and npm**
+
+- curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+- sudo apt-get install -y nodejs
+
+For other distributions, refer to the https://nodejs.org/
+
+2. Clone the repository
+
+
+3. Install dependencies
+
+- npm install
+- npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+- npm install axios
+- npm install papaparse
+- npm install next-auth
+- npm install tailwindcss postcss autoprefixer
+- npx tailwindcss init -p
+- npm install cors
+- npm install http-proxy-middleware
+
+4. Run the application
+- npm run dev
