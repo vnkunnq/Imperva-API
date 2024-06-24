@@ -4,19 +4,31 @@ import CreateAlias from "@/components/ImportCsv/CreateAlias";
 import CreateReverseProxyIP from "@/components/ImportCsv/CreateReverseProxyIP";
 import CreateWebService from "@/components/ImportCsv/CreateWebService";
 import CreateInboundRules from "@/components/ImportCsv/CreateInboundRules";
-import {
-  Box,
-  Center,
-  Text,
-  Flex,
-  Image,
-  Button,
-} from "@chakra-ui/react";
+import CreateServerGroup from "@/components/ImportCsv/CreateServerGroup";
+import CreateSite from "@/components/ImportCsv/CreateSite";
+import { Box, Center, Text, Flex, Image, IconButton } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
+import { FiLogOut } from "react-icons/fi";
 
+export default function Dashboard() {
+  const router = useRouter();
 
-export default async function Dashboard() {
+  const handleLogout = async () => {
+    router.push('/login');
+  };
+
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center" position="relative">
+      <IconButton
+        colorScheme="red"
+        icon={<FiLogOut />}
+        aria-label="Logout"
+        position="absolute"
+        top={4}
+        right={4}
+        size="lg"
+        onClick={handleLogout}
+      />
       <Image
         src="/imperva-vector-logo.svg"
         alt="Imperva Logo"
@@ -28,7 +40,7 @@ export default async function Dashboard() {
 
       <Box
         w="400px"
-        h="400px"
+        h="480px"
         borderWidth="1px"
         borderRadius="10"
         borderColor="black"
@@ -49,6 +61,8 @@ export default async function Dashboard() {
 
           <CreateReverseProxyIP buttonText="Create IP Address" />
           <CreateAlias buttonText="Create Alias" />
+          <CreateSite buttonText="Create Site" />
+          <CreateServerGroup buttonText="Create Server Group" />
           <CreateWebService buttonText="Create Web Service" />
           <CreateInboundRules buttonText="Create Inbound Rules" />
         </Flex>
