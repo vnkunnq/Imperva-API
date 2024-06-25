@@ -58,8 +58,16 @@ export default function CreateReverseProxyIP({ buttonText }: ImportCsvModalProps
     onClose();
   };
 
-  const handleImport = async () => {
+    const handleImport = async () => {
     if (!file) return;
+
+    const apiIP = localStorage.getItem('apiIP');
+    const apiPort = localStorage.getItem('apiPort');
+
+    if (!apiIP || !apiPort) {
+      setError("API IP and Port are not set.");
+      return;
+    }
 
     Papa.parse(file, {
       header: true,
@@ -84,6 +92,8 @@ export default function CreateReverseProxyIP({ buttonText }: ImportCsvModalProps
               headers: {
                 "Content-Type": "application/json",
                 "Cookie": `JSESSIONID=${sessionId}`,
+                "x-api-ip": apiIP,
+                "x-api-port": apiPort,
               },
               withCredentials: true,
             });
@@ -138,9 +148,10 @@ export default function CreateReverseProxyIP({ buttonText }: ImportCsvModalProps
   return (
     <>
       <Button
+        colorScheme="blue"
         _hover={{ bg: 'grey' }}
         w="170px"
-        textColor="black"
+        textColor="white"
         borderWidth="1px"
         borderColor="grey"
         onClick={onOpen}

@@ -2,19 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  Box,
-  Button,
-  Container,
-  FormControl,
-  FormLabel,
-  Input,
-  Alert,
-  AlertIcon,
-  Divider,
-  Flex,
-  Image,
-} from "@chakra-ui/react";
+import { Box, Button, Container, FormControl, FormLabel, Input, Alert, AlertIcon, Divider, Flex, Image } from "@chakra-ui/react";
 import axios from "axios";
 
 export default function LoginPage() {
@@ -31,11 +19,21 @@ export default function LoginPage() {
     const credentials = btoa(`${username}:${password}`);
     const authHeader = `Basic ${credentials}`;
 
+    const ip = localStorage.getItem('apiIP');
+    const port = localStorage.getItem('apiPort');
+
+    if (!ip || !port) {
+      setError("API IP and Port are not set.");
+      return;
+    }
+
     try {
       const response = await axios.post("/api/loginProxy", null, {
         headers: {
           Authorization: authHeader,
           "Content-Type": "application/json",
+          "x-api-ip": ip,
+          "x-api-port": port,
         },
         withCredentials: true, // Ensure cookies are sent and received
       });

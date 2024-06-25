@@ -6,7 +6,15 @@ import cookie from 'cookie';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
 
-  const targetUrl = 'https://192.168.52.156:8083/SecureSphere/api/v1/auth/session';
+  // Get IP and Port from headers set by the client
+  const ip = req.headers['x-api-ip'] as string;
+  const port = req.headers['x-api-port'] as string;
+
+  if (!ip || !port) {
+    return res.status(400).json({ message: 'IP and Port are required' });
+  }
+
+  const targetUrl = `https://${ip}:${port}/SecureSphere/api/v1/auth/session`;
 
   if (method === 'POST') {
     try {

@@ -12,7 +12,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ message: 'Missing URL Path Parameters in query parameters' });
   }
 
-  const url = `https://192.168.52.156:8083/SecureSphere/api/v1/conf/webServices/${siteName}/${serverGroupName}`;
+  const apiIP = headers['x-api-ip'] as string;
+  const apiPort = headers['x-api-port'] as string;
+
+  if (!apiIP || !apiPort) {
+    return res.status(400).json({ message: 'API IP and Port are required' });
+  }
+
+  const url = `https://${apiIP}:${apiPort}/SecureSphere/api/v1/conf/webServices/${siteName}/${serverGroupName}`;
 
   const cookies = cookie.parse(req.headers.cookie || '');
   const jsessionid = cookies.JSESSIONID;
